@@ -1,0 +1,39 @@
+﻿@model IntegratedSystems.Domain.Dto.VaccineDto
+
+<div class="container">
+    <form method="post" asp-action="AddVaccineToVaccinationCenter">
+
+        <input type="hidden" asp-for="VaccinationCenter" value="@Model.VaccinationCenter" class="form-control" />
+
+        <div class="form-group">
+            <label for="Manufacturer">Manufacturer</label>
+            <select asp-for="Manufacturer" class="form-control">
+                <option value="">-- Select Manufacturer --</option>
+                @if (Model.AllManufacturers != null)
+                {
+                    foreach (var manufacturer in Model.AllManufacturers)
+                    {
+                        <option value="@manufacturer">@manufacturer</option>
+                    }
+                }
+            </select>
+		</div>
+		<div class="form-group">
+			<label for="PatientId">PatientId</label>
+			<select asp-for="PatientId" class="form-control">
+				<option value="">-- Select Patient --</option>
+				@if (Model.AllPatients != null)
+				{
+					foreach (var patient in Model.AllPatients)
+					{
+						<option value="@patient.Id">@patient.FirstName</option>
+					}
+				}
+			</select>
+		</div>
+        <div class="row mt-4">
+            <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+
+    </form>
+</div>
